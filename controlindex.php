@@ -6,7 +6,7 @@ session_start();
 
 $user=$_POST["textusername"];
 $pass=$_POST["textpassword"];
-$connect = mysqli_connect('localhost:6666','root','','accont');
+$connect = mysqli_connect('localhost','root','','accont');
  
 if(mysqli_connect_errno()!==0)
 {

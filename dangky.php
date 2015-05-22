@@ -21,7 +21,7 @@ $z=$c;
 
 
 if(preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$c)){
-$con=mysqli_connect('localhost:6666','root','','accont');
+$con=mysqli_connect('localhost','root','','accont');
 	$sqlii="SELECT*FROM accont1 WHERE EMAIL='$c'";
 	$result=mysqli_query($con,$sqlii);
 	$row=mysqli_num_rows($result);
@@ -56,7 +56,7 @@ else
 	if($tam==0){header("location:index.php");
 		$_SESSION["register"]="Mật khẩu không trùng";}
 	else if($tam==1&$tam1==1&$row==0){
-		$conc=mysqli_connect("localhost:6666","root","","accont");
+		$conc=mysqli_connect("localhost","root","","accont");
 		if(!$conc)
 		{
 			die("Connect is fail:".mysqli_connect_error());
@@ -64,8 +64,7 @@ else
 		$sql="INSERT INTO accont1(username,password,email,ngay,thang,nam,gioitinh) VALUES('$a','$b','$c','$d','$e','$f','$h')";
 		if(mysqli_query($conc,$sql))
 		{
-			 $message = 'Đăng kí thành công';
-
+			$message = 'Đăng kí thành công';
 			echo "<SCRIPT type='text/javascript'>
 				alert('$message');
 				window.location.replace(\"index.php\");

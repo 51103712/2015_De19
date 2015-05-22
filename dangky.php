@@ -19,14 +19,6 @@ $x=$e1;
 $y=$b;
 $z=$c;
 
-$email = test_input($_POST["email"]);
-                // check if e-mail address syntax is valid
-                if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)){
-                    $emErr = "Invalid email format"; 
-                }
-                if (empty($_POST["email"])){
-                    $emErr = "Email is required";
-                }
 
 if(preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$c)){
 $con=mysqli_connect('localhost:6666','root','','accont');
@@ -38,10 +30,12 @@ $con=mysqli_connect('localhost:6666','root','','accont');
 		$_SESSION["mailerro"]="";
 		
 	}
-
+	$tam1=1;
 }
 else {header("location:index.php");
-	$_SESSION["mailerro"]="Email không hợp lệ";}
+	$_SESSION["mailerro"]="Email không hợp lệ";
+	$tam1=0;
+	}
 
 
 
@@ -70,8 +64,13 @@ else
 		$sql="INSERT INTO accont1(username,password,email,ngay,thang,nam,gioitinh) VALUES('$a','$b','$c','$d','$e','$f','$h')";
 		if(mysqli_query($conc,$sql))
 		{
-			echo "<script>alert('Đăng kí thành công'); </script>";
+			 $message = 'Đăng kí thành công';
 
+			echo "<SCRIPT type='text/javascript'>
+				alert('$message');
+				window.location.replace(\"index.php\");
+				</SCRIPT>";
+			
 		}
 		else
 		{
